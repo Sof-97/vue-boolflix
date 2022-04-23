@@ -6,23 +6,25 @@
 			alt="logo netflix"
 		/>
 		<input
-            placeholder="Cosa vuoi guardare?"
+			placeholder="Cosa vuoi guardare?"
 			class="me-5 form-control w-25"
 			type="text"
 			name="search"
 			id="searchInput"
 			v-model="searched"
+			@keyup="$emit('updateSearch', searched)"
 		/>
+		<button @click="$emit('getData(showsSearch)')">Get</button>
 	</div>
 </template>
 <script>
 export default {
 	name: "HeaderComp",
-    data(){
-        return{
-            searched: ""
-        }
-    }
+	data() {
+		return {
+			searched: "",
+		};
+	},
 };
 </script>
 <style lang="scss" scoped>
