@@ -2,7 +2,7 @@
 	<div id="app">
 		<HeaderComp @updateSearch="updateSearch" />
 		<main class="container mt-3">
-			<h2>{{ headingTop }}</h2>
+			<h2>{{ headingTop}}</h2>
 			<MainComp :filmData="filmData" />
 			<h2 v-if="selected.text != '' " class="mt-4">Serie TV</h2>
 			<ShowComp :showData="showData"/>
@@ -28,7 +28,7 @@ export default {
 			apiKey: "?api_key=45fcb174ff225f6bfb45caa448731eef",
 			movieSearch: "https://api.themoviedb.org/3/search/movie/",
 			showsSearch: "https://api.themoviedb.org/3/search/tv/",
-			popular: "https://api.themoviedb.org/3/trending/all/day?api_key=45fcb174ff225f6bfb45caa448731eef",
+			popular: "https://api.themoviedb.org/3/trending/movie/day?api_key=45fcb174ff225f6bfb45caa448731eef",
 			selected: {
 				lang: "it-IT",
 				text: "",

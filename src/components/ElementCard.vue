@@ -8,8 +8,8 @@
 		<div>
 			<h5 class="my-2">{{ title }}</h5>
 			<div>
-			<p>Language: {{ language }}</p>
-			<p>Media Voto: {{ voteAverage }}</p>
+				<p>Lingua: {{language}}<img src="https://countryflagsapi.com/png/${language}" alt=""></p>
+				<p>Media Voto: {{ voteAverage }}</p>
 			</div>
 		</div>
 	</div>
@@ -24,6 +24,11 @@ export default {
 		voteAverage: String,
 		image: String,
 	},
+	data(){
+		return{
+			ln: this.language,
+		}
+	}
 };
 </script>
 <style lang="scss" scoped>
@@ -41,7 +46,6 @@ div.card-info {
 	p {
 		margin: 0;
 	}
-	
 }
 div.card-info:last-child {
 	margin-left: 10px;
