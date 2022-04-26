@@ -6,7 +6,7 @@
 			:title="item.title"
 			:originalTitle="item.original_title"
 			:language="item.original_language"
-			:voteAverage="Math.round(item.vote_average)"
+			:voteAverage="toString(item.vote_average)"
 			:image="item.poster_path"
 		>
 		</element-card>

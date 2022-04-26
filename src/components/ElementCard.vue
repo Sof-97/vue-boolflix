@@ -17,7 +17,7 @@ export default {
 		title: String,
 		originalTitle: String,
 		language: String,
-		voteAverage: Number,
+		voteAverage: String,
         image: String
 	},
 };
