@@ -5,11 +5,21 @@
 			:src="`https://image.tmdb.org/t/p/w342/${image}`"
 			alt=""
 		/>
-		<div>
-			<h5 class="my-2">{{ title }}</h5>
+		<div class="info">
+			<h5 class="my-3">{{ title }}</h5>
 			<div>
-				<p>Lingua: {{language}}<img src="https://countryflagsapi.com/png/${language}" alt=""></p>
+				<p>
+					Lingua: {{ language
+					}}<span :class="'fi fi-' + language"></span>
+				</p>
 				<p>Media Voto: {{ voteAverage }}</p>
+				<p>
+					<i
+						:key="i"
+						v-for="i in 5"
+						class="(this.average < i )? 'fa-solid' : 'fa-light' "
+					></i>
+				</p>
 			</div>
 		</div>
 	</div>
@@ -26,9 +36,14 @@ export default {
 	},
 	data(){
 		return{
-			ln: this.language,
+			av: this.average()
 		}
-	}
+	},
+	methods: {
+		average() {
+			return 1
+		},
+	},
 };
 </script>
 <style lang="scss" scoped>
@@ -45,10 +60,23 @@ div.card-info {
 	}
 	p {
 		margin: 0;
+		span {
+			margin-left: 5px;
+			border-radius: 3px;
+		}
+	}
+	.info {
+		min-height: 8.3em;
 	}
 }
 div.card-info:last-child {
 	margin-left: 10px;
 	margin-right: auto;
+}
+.fi-en {
+	background-image: url("../../node_modules/flag-icons/flags/4x3/gb.svg");
+}
+.fi-en.fis {
+	background-image: url("../../node_modules/flag-icons/flags/1x1/gb.svg");
 }
 </style>

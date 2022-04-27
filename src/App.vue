@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import "flag-icons"
 import "bootstrap";
 import axios from "axios";
 import HeaderComp from "./components/HeaderComp.vue";
