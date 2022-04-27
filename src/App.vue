@@ -1,11 +1,13 @@
 <template>
 	<div id="app">
-		<HeaderComp @updateSearch="updateSearch" />
+		<HeaderComp @updateSearch="updateSearch" :filmGenre="filmGenre" :showGenre="showGenre"/>
 		<main class="container mt-3">
 			<h2>{{ headingTop}}</h2>
 			<MainComp :filmData="filmData" />
+			<h5 class="no-result" v-if="this.filmData.length == 0">Nessun risultato per film</h5>
 			<h2 v-if="selected.text != '' " class="mt-4">Serie TV</h2>
 			<ShowComp :showData="showData"/>
+			<h5 class="no-result" v-if="this.showData.length == 0 && this.selected.text != ''">Nessun risultato per serie tv</h5>
 		</main>
 	</div>
 </template>
@@ -34,8 +36,10 @@ export default {
 				lang: "it-IT",
 				text: "",
 			},
-			filmData: null,
-			showData: null,
+			showGenre: null,
+			filmGenre: null,
+			filmData: [],
+			showData: [],
 			toGet: "",
 			data: null,
 			headingTop: null,
@@ -43,6 +47,7 @@ export default {
 	},
 	created() {
 			this.getPopular();
+			this.getGenreList();
 	},
 	methods: {
 		updateSearch(search) {
@@ -68,7 +73,6 @@ export default {
 			this.headingTop = "Popolari questa settimana"
 			axios.get(this.popular)
 				.then(res => {
-					console.log(res);
 					this.filmData = res.data.results
 				})
 		},
@@ -83,7 +87,19 @@ export default {
 				.then(res => {
 					this.showData = res.data.results
 				})
-		}
+		},
+		getGenreList(){
+			axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=45fcb174ff225f6bfb45caa448731eef")
+				.then(res => {
+					console.log(res);
+					this.filmGenre = res.data.genres
+				})
+			axios.get("https://api.themoviedb.org/3/genre/tv/list?api_key=45fcb174ff225f6bfb45caa448731eef")
+			.then(res => {
+					console.log(res);
+					this.showGenre = res.data.genres
+				})
+			}
 	},
 	watch:{
 		'selected.text': function(){
@@ -112,6 +128,11 @@ div#app {
 			color: #fff;
 			font-weight: bold;
 		}
+	}
+	.no-result{
+		color: #fff;
+		opacity: 0,8;
+		margin: 10px 100px;
 	}
 }
 </style>

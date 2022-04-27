@@ -7,7 +7,7 @@
 		/>
 		<div class="info">
 			<h5 class="my-3">{{ title }}</h5>
-			<div>
+			<div class="info_sub">
 				<p>
 					Lingua: {{ language
 					}}<span :class="'fi fi-' + language"></span>
@@ -17,7 +17,8 @@
 					<i
 						:key="i"
 						v-for="i in 5"
-						class="(this.average < i )? 'fa-solid' : 'fa-light' "
+						class="fa-star"
+						:class="i <= averageStar() ? 'fa-solid' : 'fa-regular'"
 					></i>
 				</p>
 			</div>
@@ -34,14 +35,12 @@ export default {
 		voteAverage: String,
 		image: String,
 	},
-	data(){
-		return{
-			av: this.average()
-		}
+	data() {
+		return {};
 	},
 	methods: {
-		average() {
-			return 1
+		averageStar() {
+			return Math.ceil(Number(this.voteAverage) / 2);
 		},
 	},
 };
@@ -66,7 +65,15 @@ div.card-info {
 		}
 	}
 	.info {
-		min-height: 8.3em;
+		min-height: 10em;
+		position: relative;
+		&_sub{
+			width: 100%;
+			position: absolute;
+			left: 50%;
+			transform: translate(-50%);
+			bottom: 8px;
+		}
 	}
 }
 div.card-info:last-child {

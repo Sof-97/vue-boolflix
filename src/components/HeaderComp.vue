@@ -14,12 +14,21 @@
 			v-model="searched"
 			@keyup="$emit('updateSearch', searched)"
 		/>
-		<button @click="$emit('getData(showsSearch)')">Get</button>
+		
+		<select class="form-select w-25 me-3" name="genreSelect" id="genreSelect">
+			<option value="">Oppure scegli un genere!</option>
+			<option :key="item.id" v-for="item in filmGenre" value="item.id">Film: {{item.name}}</option>
+			<option :key="item.id + 'show'" v-for="item in showGenre" value="item.id">Serie TV: {{item.name}}</option>
+		</select>
 	</div>
 </template>
 <script>
 export default {	
 	name: "HeaderComp",
+	props:{
+		showGenre: Array,
+		filmGenre: Array
+	},
 	data() {
 		return {
 			searched: "",
