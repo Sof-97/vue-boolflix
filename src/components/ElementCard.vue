@@ -1,30 +1,42 @@
 <template>
 	<div class="card-info col-2">
-		<div class="card_front">
-			<img
-				class="img-fluid"
-				:src="`https://image.tmdb.org/t/p/w342/${image}`"
-				alt=""
-			/>
-			<div class="info">
-				<h5 class="my-3">{{ title }}</h5>
-				<div class="info_sub">
-					<p>
-						Lingua: {{ language
-						}}<span :class="'fi fi-' + language"></span>
-					</p>
-					<p>Media Voto: {{ voteAverage }}</p>
-					<p>
-						<i
-							:key="i"
-							v-for="i in 5"
-							class="fa-star"
-							:class="
-								i <= averageStar() ? 'fa-solid' : 'fa-regular'
-							"
-						></i>
-					</p>
+		<div class="full">
+			<div class="card_front">
+				<img
+					class="img-fluid"
+					:src="`https://image.tmdb.org/t/p/w342/${image}`"
+					alt=""
+				/>
+				<div class="info">
+					<h5 class="my-3">{{ title }}</h5>
+					<div class="info_sub">
+						<p>
+							Lingua: {{ language
+							}}<span :class="'fi fi-' + language"></span>
+						</p>
+						<p>Media Voto: {{ voteAverage }}</p>
+						<p>
+							<i
+								:key="i"
+								v-for="i in 5"
+								class="fa-star"
+								:class="
+									i <= averageStar()
+										? 'fa-solid'
+										: 'fa-regular'
+								"
+							></i>
+						</p>
+					</div>
 				</div>
+			</div>
+			<div class="bg-black card_back">
+				<p><strong>Titolo:</strong>{{ title }}</p>
+				<p><strong>Titolo originale:</strong>{{ originalTitle }}</p>
+				<p><strong>Voto:</strong>{{ voteAverage }}</p>
+				<p><strong>Trama:</strong>{{ overview }}</p>
+				<p><strong>Attori protagonisti:</strong></p>
+				<p><strong>Genere/i:</strong></p>
 			</div>
 		</div>
 	</div>
@@ -38,6 +50,7 @@ export default {
 		language: String,
 		voteAverage: String,
 		image: String,
+		overview: String,
 	},
 	data() {
 		return {};
@@ -50,11 +63,53 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+//Front-back card
+div.card-info:hover .full {
+	transform: rotateY(180deg);
+}
+.full {
+	height: 530px;
+	width: 100%;
+	position: relative;
+	transition: all 1s linear;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+}
+.card_front,
+.card_back {
+	height: 100%;
+	width: 100%;
+	border-radius: 20px;
+	position: absolute;
+}
+.card_front {
+	z-index: 2;
+	backface-visibility: hidden;
+}
+.card_back {
+	backface-visibility: hidden;
+	padding: 15px;
+	p {
+		text-align: justify;
+		display: flex;
+		font-size: 0.8em;
+		strong {
+			display: inline;
+			margin-right: 4px;
+		}
+	}
+	z-index: 1;
+	transform: rotateY(180deg);
+}
+.container {
+	perspective: 1000px;
+}
+// Formattazione base
 div.card-info {
 	background-color: transparent;
 	perspective: 1000px;
 	transition: 1s all ease-in-out;
-	width: calc(100% / 6 - 10px);
+	width: calc(100% / 5 - 10px);
 	margin-top: 10px;
 	box-shadow: -1px -1px 10px 1px rgba($color: #fff, $alpha: 0.3);
 	border-radius: 20px;
@@ -70,21 +125,6 @@ div.card-info {
 			margin-left: 5px;
 			border-radius: 3px;
 		}
-	}
-	.info {
-		min-height: 10em;
-		position: relative;
-		&_sub {
-			width: 100%;
-			position: absolute;
-			left: 50%;
-			transform: translate(-50%);
-			bottom: 8px;
-		}
-	}
-	&:last-child {
-		margin-left: 10px;
-		margin-right: auto;
 	}
 }
 

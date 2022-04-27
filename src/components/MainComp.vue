@@ -8,6 +8,7 @@
 			:language="item.original_language"
 			:voteAverage="String(item.vote_average)"
 			:image="item.poster_path"
+			:overview="item.overview"
 		>
 		</element-card>
 	</div>
