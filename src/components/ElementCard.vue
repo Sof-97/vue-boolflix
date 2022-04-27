@@ -1,26 +1,30 @@
 <template>
 	<div class="card-info col-2">
-		<img
-			class="img-fluid"
-			:src="`https://image.tmdb.org/t/p/w342/${image}`"
-			alt=""
-		/>
-		<div class="info">
-			<h5 class="my-3">{{ title }}</h5>
-			<div class="info_sub">
-				<p>
-					Lingua: {{ language
-					}}<span :class="'fi fi-' + language"></span>
-				</p>
-				<p>Media Voto: {{ voteAverage }}</p>
-				<p>
-					<i
-						:key="i"
-						v-for="i in 5"
-						class="fa-star"
-						:class="i <= averageStar() ? 'fa-solid' : 'fa-regular'"
-					></i>
-				</p>
+		<div class="card_front">
+			<img
+				class="img-fluid"
+				:src="`https://image.tmdb.org/t/p/w342/${image}`"
+				alt=""
+			/>
+			<div class="info">
+				<h5 class="my-3">{{ title }}</h5>
+				<div class="info_sub">
+					<p>
+						Lingua: {{ language
+						}}<span :class="'fi fi-' + language"></span>
+					</p>
+					<p>Media Voto: {{ voteAverage }}</p>
+					<p>
+						<i
+							:key="i"
+							v-for="i in 5"
+							class="fa-star"
+							:class="
+								i <= averageStar() ? 'fa-solid' : 'fa-regular'
+							"
+						></i>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -47,6 +51,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 div.card-info {
+	background-color: transparent;
+	perspective: 1000px;
+	transition: 1s all ease-in-out;
 	width: calc(100% / 6 - 10px);
 	margin-top: 10px;
 	box-shadow: -1px -1px 10px 1px rgba($color: #fff, $alpha: 0.3);
@@ -67,7 +74,7 @@ div.card-info {
 	.info {
 		min-height: 10em;
 		position: relative;
-		&_sub{
+		&_sub {
 			width: 100%;
 			position: absolute;
 			left: 50%;
@@ -75,11 +82,12 @@ div.card-info {
 			bottom: 8px;
 		}
 	}
+	&:last-child {
+		margin-left: 10px;
+		margin-right: auto;
+	}
 }
-div.card-info:last-child {
-	margin-left: 10px;
-	margin-right: auto;
-}
+
 .fi-en {
 	background-image: url("../../node_modules/flag-icons/flags/4x3/gb.svg");
 }

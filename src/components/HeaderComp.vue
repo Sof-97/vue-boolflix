@@ -14,24 +14,39 @@
 			v-model="searched"
 			@keyup="$emit('updateSearch', searched)"
 		/>
-		
-		<select class="form-select w-25 me-3" name="genreSelect" id="genreSelect">
-			<option value="">Oppure scegli un genere!</option>
-			<option :key="item.id" v-for="item in filmGenre" value="item.id">Film: {{item.name}}</option>
-			<option :key="item.id + 'show'" v-for="item in showGenre" value="item.id">Serie TV: {{item.name}}</option>
+		<select
+			@change="$emit('filterGenre', genreId)"
+			v-model="genreId"
+			aria-label=".form-select-lg example"
+			class="form-select w-25 me-3"
+			id="genreSelect"
+			name="genreSelect"
+		>
+			<option value="" selected>Tutti i generi</option>
+			<option :key="item.id" v-for="item in filmGenre" :value="item.id">
+				Film: {{ item.name }}
+			</option>
+			<option
+				:key="item.id + 'show'"
+				v-for="item in showGenre"
+				value="item.id"
+			>
+				Serie TV: {{ item.name }}
+			</option>
 		</select>
 	</div>
 </template>
 <script>
-export default {	
+export default {
 	name: "HeaderComp",
-	props:{
+	props: {
 		showGenre: Array,
-		filmGenre: Array
+		filmGenre: Array,
 	},
 	data() {
 		return {
-			searched: "",
+			searched: '',
+			genreId: '',
 		};
 	},
 };
