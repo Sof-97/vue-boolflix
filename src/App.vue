@@ -123,7 +123,6 @@ export default {
 					"https://api.themoviedb.org/3/genre/movie/list?api_key=45fcb174ff225f6bfb45caa448731eef"
 				)
 				.then(res => {
-					console.log(res);
 					this.filmGenre = res.data.genres;
 				});
 			axios
@@ -131,7 +130,6 @@ export default {
 					"https://api.themoviedb.org/3/genre/tv/list?api_key=45fcb174ff225f6bfb45caa448731eef"
 				)
 				.then(res => {
-					console.log(res);
 					this.showGenre = res.data.genres;
 				});
 		},

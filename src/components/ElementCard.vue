@@ -36,7 +36,9 @@
 				<p><strong>Voto:</strong>{{ voteAverage }}</p>
 				<p><strong>Trama:</strong>{{ overview }}</p>
 				<p><strong>Attori protagonisti:</strong></p>
-				<p><strong>Genere/i:</strong></p>
+				<p><strong>Genere/i:</strong>
+				<span :key="i" v-for="(item, i) in genre">{{item.name}}</span>
+				</p>
 			</div>
 		</div>
 	</div>
@@ -51,9 +53,12 @@ export default {
 		voteAverage: String,
 		image: String,
 		overview: String,
+		id: Number,
+		genre: String,
 	},
 	data() {
-		return {};
+		return {
+		};
 	},
 	methods: {
 		averageStar() {
