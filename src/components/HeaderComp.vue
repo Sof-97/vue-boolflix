@@ -57,6 +57,17 @@ div {
 	padding: 15px 0;
 	img {
 		margin-left: 100px;
+		@media screen and (max-width: 400px){
+			display: none;
+		}
 	}
+	@media screen and (max-width: 400px){
+		padding: 10px 5%;
+	}
+	input,select{
+	@media screen and (max-width: 400px){
+		width: 50%!important;
+		margin: 0 5px!important;
+	}}
 }
 </style>

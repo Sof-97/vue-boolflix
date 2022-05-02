@@ -10,7 +10,7 @@
 			:image="item.poster_path"
 			:overview="item.overview"
 			:id="item.id"
-			:genre="(getGenre(item.id))"
+			:genre="getGenre(item.id)"
 		>
 		</element-card>
 	</div>
@@ -44,4 +44,5 @@ export default {
 	},
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

@@ -1,5 +1,5 @@
 <template>
-	<div class="card-info col-2">
+	<div class="card-info col-2 ">
 		<div class="full">
 			<div class="card_front">
 				<img
