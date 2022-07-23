@@ -32,7 +32,7 @@
 						<i v-show="!item.length > i">,</i>
 					</span>
 				</p>
-				<p>
+				<p style="flex-wrap: wrap">
 					<strong>Genere/i: </strong>
 					<span :key="i" v-for="(item, i) in genre">
 						<span>{{ item.name }}</span>
